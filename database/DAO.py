@@ -1,6 +1,6 @@
 from database.DB_connect import DBConnect
 from model.album import Album
-
+#dao
 class DAO:
     @staticmethod
     def getAllAlbums():

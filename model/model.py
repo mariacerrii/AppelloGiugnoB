@@ -39,8 +39,28 @@ class Model:
             v = self._idMapAO[id2]
             self._graph.add_edge(u, v)
 
+    #COMPONENTI CONNESSE - PUNTO C
+    def getInfoComponenti(self):
+        # Trovo tutte le componenti connesse
+        componenti = list(nx.connected_components(self._graph))
+
+        if len(componenti) == 0:
+            return 0, []
+
+        # Trovo la componente più grande
+        maggiore = max(componenti, key=len)
+
+        # Ordino gli album alfabeticamente per titolo
+        album_ordinati = sorted(
+            maggiore,
+            key=lambda a: a.Title
+        )
+
+        return len(componenti), album_ordinati
+
     def getAllAlbums(self):
         return DAO.getAllAlbums()
+
 
     # ---------- STAMPE ----------
     def getNumNodes(self):
